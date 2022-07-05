@@ -1,0 +1,51 @@
+---
+title: "Datos de cantones de Costa Rica "
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+```{r paquetes}
+
+library(dplyr)
+library(sf)
+library(leaflet)
+```
+
+```{r lectura de datos}
+cantones <-
+  st_read(dsn = "F:/Procesamiento de datos/tableros de control cap17/cantones_simplificados.geojson.txt")
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Mapa de cantones
+
+```{r mapa}
+leaflet()%>%
+  addTiles(group = "OpenStreetMap") %>%
+  addPolygons(data = cantones, weight = 1.0) %>%
+  addLayersControl(baseGroups = c("OpenStreeetMap"), overlayGroups = c("Cantones"))
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
